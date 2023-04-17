@@ -1,0 +1,1 @@
+2023-04-17 17:30:03 [5fb281fe-16b3-42df-8259-8f9ad5e091c1] user logged in, {"username":"john123"}

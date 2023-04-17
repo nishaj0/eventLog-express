@@ -1,0 +1,29 @@
+const { format } = require("date-fns");
+const { v4: uuid } = require("uuid");
+
+const fs = require("fs");
+const fsPromises = require("fs").promises;
+const path = require("path");
+
+const logEvent = async (eventName, eventData) => {
+   const timestamp = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+   const eventId = uuid();
+
+   const logData = `${timestamp} [${eventId}] ${eventName}, ${JSON.stringify(
+      eventData
+   )}\n`;
+
+   try {
+      if (!fs.existsSync(path.join(__dirname, "logs"))) {
+         await fsPromises.mkdir(path.join(__dirname, "logs"));
+      }
+      await fsPromises.appendFile(
+         path.join(__dirname, "logs", "logs.txt"),
+         logData
+      );
+   } catch (err) {
+      console.error(err);
+   }
+};
+
+logEvent("user logged in", { username: "john123" });
