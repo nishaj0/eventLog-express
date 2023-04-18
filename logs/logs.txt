@@ -1,1 +1,2 @@
-2023-04-17 17:30:03 [5fb281fe-16b3-42df-8259-8f9ad5e091c1] user logged in, {"username":"john123"}
+2023-04-18 13:50:11 [88b6d8de-4066-46c6-b110-f1e967c846b6] opened page "Home", {"username":"noname"}
+2023-04-18 13:51:51 [3b15df66-14b9-46da-9c54-c44c47be2e68] opened pagehome, {"username":"noname"}
