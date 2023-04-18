@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
    const page = "Home"
-   res.send(page);
+   res.sendFile(path.join(__dirname, 'views', "index.html"));
    logEvent(`opened page "${page}"`, { username: os.userInfo().username });
 });
 
@@ -26,11 +26,28 @@ app.get('/old-page(.html)?', (req, res) => {
    logEvent(`opened page "${page}"`, { username: os.userInfo().username });
 })
 
-app.get('*', (req, res) => {
-   const page = "404"
-   res.redirect(path.join(__dirname, 'views', "404.html"))
-   logEvent(`opened page "${page}"`, { username: os.userInfo().username });
-})
+const one = (req, res, next) => {
+   console.log("one");
+   next();
+};
+
+const two = (req, res, next) => {
+   console.log("two");
+   next();
+};
+
+const three = (req, res, next) => {
+   console.log("three");
+   res.send("Finished");
+};
+
+app.get("/chain(.html)?", [one, two, three]);
+
+// app.get('/*', (req, res) => {
+//    const page = "404"
+//    res.status(404).redirect(path.join(__dirname, 'views', "404.html"))
+//    logEvent(`opened page "${page}"`, { username: os.userInfo().username });
+// })
 
 
 app.listen(PORT, () => console.log(`server running at port: ${PORT}`));

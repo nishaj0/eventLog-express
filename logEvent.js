@@ -25,9 +25,4 @@ const logEvent = async (eventName, eventData) => {
    }
 };
 
-
-const page = 'home';
-
-logEvent(`opened page${page}`, { username: os.userInfo().username });
-
 module.exports = logEvent
